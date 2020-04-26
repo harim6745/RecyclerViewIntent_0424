@@ -2,6 +2,8 @@ package com.example.recyclerviewintent;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.app.Activity;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -14,7 +16,8 @@ import java.util.ArrayList;
 
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomViewHolder> {
 
-    private ArrayList<Dictionary> mList;
+    private ArrayList<Dictionary> mList = null;
+    private Activity context = null;
 
     public class CustomViewHolder extends RecyclerView.ViewHolder {
         protected TextView product;
@@ -31,6 +34,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
 
 
     public CustomAdapter(ArrayList<Dictionary> list) {
+        this.context = context;
         this.mList = list;
     }
 
@@ -40,8 +44,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
     public CustomViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
 
         View view = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.item_list, viewGroup, false);
-
+                .inflate(R.layout.item_list, null);
         CustomViewHolder viewHolder = new CustomViewHolder(view);
 
         return viewHolder;
@@ -53,11 +56,12 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
     @Override
     public void onBindViewHolder(@NonNull CustomViewHolder viewholder, int position) {
 
+        /*
         viewholder.product.setTextSize(TypedValue.COMPLEX_UNIT_SP, 25);
         viewholder.prod_img.setTextSize(TypedValue.COMPLEX_UNIT_SP, 25);
 
         viewholder.product.setGravity(Gravity.CENTER);
-        viewholder.prod_img.setGravity(Gravity.CENTER);
+        viewholder.prod_img.setGravity(Gravity.CENTER); */
 
 
         viewholder.product.setText(mList.get(position).getProduct());
